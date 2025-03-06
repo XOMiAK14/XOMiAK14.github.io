@@ -8,36 +8,18 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         input, button { width: 80%; margin: 10px 0; padding: 10px; }
-        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div id="app">
-        <h2>Бронирование стола</h2>
-        <input type="text" id="name" placeholder="Ваше имя" required><br>
-        <input type="tel" id="phone" placeholder="Телефон" required><br>
-        <input type="number" id="table" placeholder="Номер стола" required><br>
-        <button onclick="sendData()">Забронировать</button>
-    </div>
-
-    <div id="error" class="hidden">
-        <h2>Ошибка доступа</h2>
-        <p>Эта страница доступна только через Telegram Web Apps.</p>
-    </div>
+    <h2>Бронирование стола</h2>
+    <input type="text" id="name" placeholder="Ваше имя" required><br>
+    <input type="tel" id="phone" placeholder="Телефон" required><br>
+    <input type="number" id="table" placeholder="Номер стола" required><br>
+    <button onclick="sendData()">Забронировать</button>
 
     <script>
         let tg = window.Telegram.WebApp;
-
-        console.log("Проверка initData:", tg.initData);
-
-        if (!tg.initData || tg.initData === "") {
-            console.log("Ошибка: Telegram Web Apps не передает данные!");
-            document.getElementById("app").style.display = "none";
-            document.getElementById("error").classList.remove("hidden");
-        } else {
-            console.log("Telegram WebApp успешно запущен.");
-            tg.expand();
-        }
+        tg.expand();
 
         function sendData() {
             let name = document.getElementById("name").value;
@@ -50,7 +32,6 @@
             }
 
             let data = JSON.stringify({ имя: name, телефон: phone, стол: table });
-            console.log("Отправка данных:", data);
             tg.sendData(data);
             tg.close();
         }
