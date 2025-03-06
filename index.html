@@ -28,7 +28,7 @@
     <script>
         let tg = window.Telegram.WebApp;
 
-        if (!tg.initDataUnsafe || !tg.initData) {
+        if (!tg.initData || tg.initData === "") {
             // Если сайт открыт не из Telegram, скрываем форму и показываем ошибку
             document.getElementById("app").style.display = "none";
             document.getElementById("error").classList.remove("hidden");
