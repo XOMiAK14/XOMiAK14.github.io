@@ -3,7 +3,7 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 
 // Базовый URL API бота (замените на свой URL)
-const BOT_API_URL = 'http://85.236.188.185/bot';
+const BOT_API_URL = 'http://85.236.188.185/api';
 
 // Устанавливаем тему в зависимости от настроек Telegram
 document.addEventListener('DOMContentLoaded', function() {
